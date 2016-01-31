@@ -12,7 +12,7 @@ public class ProgramProfileCollection extends HBox{
 	private static final String SIMPL_EXE = "V:\\Crestron\\Simpl\\smpwin.exe";
 	private static final String SIMPL_IMG = "file:res/smpwin.png";
 	
-	private static final String SPLUS_EXE = "V:\\Crestron\\Simpl\\S3_SPIs.exe";
+	private static final String SPLUS_EXE = "V:\\Crestron\\Simpl\\splus.exe"; //S3_SPIs.exe";
 	private static final String SPLUS_IMG = "file:res/smpwin+.png";
 	
 	private static final String VTPRO_EXE = "V:\\Crestron\\vt_pro-e\\vtpro.exe";
@@ -26,6 +26,8 @@ public class ProgramProfileCollection extends HBox{
 											 {VTPRO_EXE, VTPRO_IMG},
 											 {TOOLBOX_EXE, TOOLBOX_IMG}};
 	
+	private boolean wasClicked = false;
+	
 	public ProgramProfileCollection() {
 		
 		for(int i=0; i<4; i++){
@@ -36,6 +38,16 @@ public class ProgramProfileCollection extends HBox{
 			ProgramProfile p = new ProgramProfile(progs[i][0], progs[i][1]);
 			
 			this.getChildren().add(p);
+			
+			p.setOnAction(e ->{
+				try {
+					p.shortcut();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				wasClicked = true;
+			});
 			
 		} // for i
 		
@@ -51,6 +63,10 @@ public class ProgramProfileCollection extends HBox{
 	
 	public static double getDefaultSpacing(){
 		return DEFAULT_SPACING;
+	} // END
+	
+	public boolean wasShotcutClicked(){
+		return wasClicked;
 	} // END
 	
 } // END

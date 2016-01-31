@@ -43,6 +43,11 @@ public class CrestronLauncher extends Application{
 		
 		ppc = new ProgramProfileCollection();
 		ppc.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+		ppc.setOnMouseExited(e ->{
+			if(ppc.wasShotcutClicked()){
+				window.close();
+			}
+		});
 		
 		scene = new Scene(ppc);
 		scene.setFill(Color.GRAY);
